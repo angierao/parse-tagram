@@ -33,8 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let homeViewController = storyboard.instantiateViewControllerWithIdentifier("HomeViewController")
         homeViewController.tabBarItem.title = "Feed"
         //homeViewController.tabBarItem.image = UIImage(named: "movies")
-        
-        
+
         let postViewController = storyboard.instantiateViewControllerWithIdentifier("PostViewController")
         postViewController.tabBarItem.title = "Post"
         //postViewController.tabBarItem.image = UIImage(named: "dvd")

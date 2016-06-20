@@ -20,7 +20,6 @@ class HomeViewController: UIViewController {
     @IBAction func onSignOut(sender: AnyObject) {
         PFUser.logOutInBackgroundWithBlock { (error: NSError?) in
             // PFUser.currentUser() will now be nil
-            
             self.performSegueWithIdentifier("logoutSegue", sender: nil)
         }
     }

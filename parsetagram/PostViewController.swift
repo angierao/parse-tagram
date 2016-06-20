@@ -8,37 +8,74 @@
 
 import UIKit
 
-class PostViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class PostViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate {
 
     @IBOutlet weak var imageView: UIImageView!
     
+    //@IBOutlet weak var postControl: UISegmentedControl!
     let imagePicker = UIImagePickerController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = true
     }
     @IBAction func onUploadImage(sender: AnyObject) {
-        imagePicker.delegate = self
-        imagePicker.allowsEditing = false
         imagePicker.sourceType = .PhotoLibrary
-        
-        presentViewController(imagePicker, animated: true, completion: nil)
+        self.presentViewController(imagePicker, animated: true, completion: nil)
         
     }
     
+    
+    @IBAction func onTakePicture(sender: AnyObject) {
+        
+        if !(UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)) {
+            
+            let alertController = UIAlertController(title: "Error", message: "Device has no camera", preferredStyle: .Alert)
+            let OKAction = UIAlertAction(title: "OK", style: .Default) { (action:UIAlertAction!) in
+                print("Dismiss UIAlertController");
+            }
+            alertController.addAction(OKAction)
+            
+            self.presentViewController(alertController, animated: true, completion:nil)
+            
+        }
+        else {
+            imagePicker.sourceType = .Camera
+            self.presentViewController(imagePicker, animated: true, completion: nil)
+        }
+        
+    }
+
     func imagePickerController(picker: UIImagePickerController,
                                didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         // Get the image captured by the UIImagePickerController
         /*
         let originalImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         let editedImage = info[UIImagePickerControllerEditedImage] as! UIImage
- */
+ */     var newImage: UIImage
+        /*
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             imageView.contentMode = .ScaleAspectFit
             imageView.image = pickedImage
+        } */
+        
+        if let pickedImage = info["UIImagePickerControllerEditedImage"] as? UIImage {
+            newImage = pickedImage
+            
+            imageView.contentMode = .ScaleAspectFit
+            imageView.image = newImage
+        } else if let pickedImage = info["UIImagePickerControllerOriginalImage"] as? UIImage {
+            newImage = pickedImage
+            
+            imageView.contentMode = .ScaleAspectFit
+            imageView.image = newImage
         }
+        
+        
         
         
         // Do something with the images (based on your use case)

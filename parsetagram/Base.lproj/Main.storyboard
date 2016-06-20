@@ -95,11 +95,20 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="vjT-qM-vHN">
-                                <rect key="frame" x="20" y="20" width="95" height="30"/>
+                                <rect key="frame" x="0.0" y="28" width="159" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Upload Image"/>
+                                <state key="normal" title="Library"/>
                                 <connections>
                                     <action selector="onUploadImage:" destination="eMm-gR-oqE" eventType="touchUpInside" id="ElW-Wx-ILc"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="118-uP-Mkw">
+                                <rect key="frame" x="141" y="28" width="159" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Camera"/>
+                                <connections>
+                                    <action selector="onTakePicture:" destination="eMm-gR-oqE" eventType="touchUpInside" id="FFf-PM-TNU"/>
+                                    <action selector="onUploadImage:" destination="eMm-gR-oqE" eventType="touchUpInside" id="QWc-3K-4Th"/>
                                 </connections>
                             </button>
                         </subviews>
