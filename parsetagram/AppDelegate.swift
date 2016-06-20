@@ -25,11 +25,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 configuration.server = "https://parse-tagram.herokuapp.com/parse"
             })
         )
+        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
+        let loginViewController = storyboard.instantiateViewControllerWithIdentifier("LoginViewController")
+        
+        let homeViewController = storyboard.instantiateViewControllerWithIdentifier("HomeViewController")
+        homeViewController.tabBarItem.title = "Feed"
+        //homeViewController.tabBarItem.image = UIImage(named: "movies")
+        
+        
+        let postViewController = storyboard.instantiateViewControllerWithIdentifier("PostViewController")
+        postViewController.tabBarItem.title = "Post"
+        //postViewController.tabBarItem.image = UIImage(named: "dvd")
+        
+        
+        
+        let tabBarController = UITabBarController()
+        tabBarController.viewControllers = [homeViewController, postViewController]
+
         if PFUser.currentUser() != nil {
             // if there is a logged in user then load the home view controller
             
+            window?.rootViewController = tabBarController
+            window?.makeKeyAndVisible()
             
+        }
+        else {
+            window?.rootViewController = loginViewController
         }
         return true
     }
