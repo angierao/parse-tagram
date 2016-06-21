@@ -62,8 +62,40 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="284" sectionHeaderHeight="28" sectionFooterHeight="28" id="dDd-by-dPW">
+                                <rect key="frame" x="0.0" y="26" width="320" height="492"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="PostCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostCell" rowHeight="284" id="ueh-GG-N1H" customClass="PostCell" customModule="parsetagram" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="284"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ueh-GG-N1H" id="ag5-Wn-4UW">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="283.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="46d-m3-nlR">
+                                                    <rect key="frame" x="0.0" y="8" width="320" height="249"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qaq-yK-IzH">
+                                                    <rect key="frame" x="15" y="262" width="290" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="captionLabel" destination="qaq-yK-IzH" id="gal-NL-qdq"/>
+                                            <outlet property="pictureView" destination="46d-m3-nlR" id="VwL-Kc-pTl"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="t1L-gH-ru7">
-                                <rect key="frame" x="251" y="20" width="60" height="30"/>
+                                <rect key="frame" x="0.0" y="0.0" width="60" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Sign Out"/>
                                 <connections>
@@ -75,6 +107,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Feed" id="U8g-3u-mdz"/>
                     <connections>
+                        <outlet property="feedView" destination="dDd-by-dPW" id="fzB-Zv-ApO"/>
                         <segue destination="BYZ-38-t0r" kind="modal" identifier="logoutSegue" id="6Xs-dA-lpt"/>
                     </connections>
                 </viewController>
@@ -91,7 +124,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="cv6-dD-b35">
-                                <rect key="frame" x="0.0" y="66" width="320" height="452"/>
+                                <rect key="frame" x="0.0" y="66" width="320" height="368"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="vjT-qM-vHN">
@@ -111,12 +144,28 @@
                                     <action selector="onUploadImage:" destination="eMm-gR-oqE" eventType="touchUpInside" id="QWc-3K-4Th"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="fxB-Wq-tPf">
+                                <rect key="frame" x="37" y="450" width="246" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="y9N-FC-ymH">
+                                <rect key="frame" x="135" y="481" width="50" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Upload"/>
+                                <connections>
+                                    <action selector="onUpload:" destination="eMm-gR-oqE" eventType="touchUpInside" id="CTa-Vi-mGh"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Post" id="DFz-r5-tBv"/>
                     <connections>
+                        <outlet property="captionField" destination="fxB-Wq-tPf" id="2r6-kR-VAY"/>
                         <outlet property="imageView" destination="cv6-dD-b35" id="vRd-Ss-Gci"/>
+                        <segue destination="bXQ-Aq-gCu" kind="push" identifier="uploadSuccess" id="Tkc-6M-36o"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0eA-mc-f9S" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -135,13 +184,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0ZK-5A-PN1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1331" y="1150"/>
+            <point key="canvasLocation" x="1483" y="1130"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="ahm-CX-Jmj">
             <objects>
                 <tabBarController storyboardIdentifier="HomeTabBarController" automaticallyAdjustsScrollViewInsets="NO" id="bXQ-Aq-gCu" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="Q5v-mx-5mj"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="agx-r1-13w">
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -156,4 +206,7 @@
             <point key="canvasLocation" x="578" y="291"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="Tkc-6M-36o"/>
+    </inferredMetricsTieBreakers>
 </document>

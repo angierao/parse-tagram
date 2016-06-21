@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import Parse
 
 class PostViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate {
 
     @IBOutlet weak var imageView: UIImageView!
     
+    @IBOutlet weak var captionField: UITextField!
     //@IBOutlet weak var postControl: UISegmentedControl!
     let imagePicker = UIImagePickerController()
     
@@ -23,12 +25,12 @@ class PostViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         imagePicker.delegate = self
         imagePicker.allowsEditing = true
     }
+    
     @IBAction func onUploadImage(sender: AnyObject) {
         imagePicker.sourceType = .PhotoLibrary
         self.presentViewController(imagePicker, animated: true, completion: nil)
         
     }
-    
     
     @IBAction func onTakePicture(sender: AnyObject) {
         
@@ -68,6 +70,8 @@ class PostViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             
             imageView.contentMode = .ScaleAspectFit
             imageView.image = newImage
+
+            
         } else if let pickedImage = info["UIImagePickerControllerOriginalImage"] as? UIImage {
             newImage = pickedImage
             
@@ -75,13 +79,30 @@ class PostViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             imageView.image = newImage
         }
         
-        
-        
-        
         // Do something with the images (based on your use case)
         
         // Dismiss UIImagePickerController to go back to your original view controller
         dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    
+    @IBAction func onUpload(sender: AnyObject) {
+    
+        if imageView.image == nil {
+            print("Image not uploaded")
+        }
+        else {
+            Post.postUserImage(imageView.image, withCaption: captionField.text, withCompletion: { (success: Bool, error: NSError?) in
+                if error == nil {
+                    print("success")
+                    Post.getPFFileFromImage(self.imageView.image)
+                    self.performSegueWithIdentifier("uploadSuccess", sender: self)
+                }
+                else {
+                    print(error)
+                }
+            })
+        }
     }
     
     override func didReceiveMemoryWarning() {
