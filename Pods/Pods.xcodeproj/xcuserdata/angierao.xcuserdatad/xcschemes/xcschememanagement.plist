@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>MBProgressHUD.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Parse.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -37,17 +42,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>37D646A8A0CC093340F35201DB09628C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>49E480B0EB7E91724F1BA0212F505119</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A6ED796747831B783BCA5E9CB72D932A</key>
+		<key>B272B33F162D6E5C3510BA50ECF2684B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B272B33F162D6E5C3510BA50ECF2684B</key>
+		<key>E61CE3B6DFA1FE6B3E296965C76C0E10</key>
 		<dict>
 			<key>primary</key>
 			<true/>

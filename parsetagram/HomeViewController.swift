@@ -8,8 +8,9 @@
 
 import UIKit
 import Parse
+import MBProgressHUD
 
-class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
 
     @IBOutlet weak var feedView: UITableView!
 
@@ -17,16 +18,83 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     var captions: [String]?
     
+    var isMoreDataLoading = false
+    var loadingMoreView:InfiniteScrollActivityView?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.feedView.reloadData()
+        
         self.feedView.delegate = self
         self.feedView.dataSource = self
 
         // Do any additional setup after loading the view.
+       
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(loadFeed(_:firstLoad:)), forControlEvents: UIControlEvents.ValueChanged)
+        self.loadFeed(refreshControl, firstLoad: true)
+        feedView.insertSubview(refreshControl, atIndex: 0)
         
+        let frame = CGRectMake(0, feedView.contentSize.height, feedView.bounds.size.width, InfiniteScrollActivityView.defaultHeight)
+        loadingMoreView = InfiniteScrollActivityView(frame: frame)
+        loadingMoreView!.hidden = true
+        feedView.addSubview(loadingMoreView!)
+        
+        var insets = feedView.contentInset;
+        insets.bottom += InfiniteScrollActivityView.defaultHeight;
+        feedView.contentInset = insets
+    }
+    
+    func loadFeed(refresh: UIRefreshControl, firstLoad: Bool) {
         let query = PFQuery(className: "Post")
+        query.limit = 20
+        query.orderByDescending("createdAt")
+        if firstLoad {
+            MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        }
+        query.findObjectsInBackgroundWithBlock { (pics: [PFObject]?, error: NSError?) in
+            if error != nil {
+                print(error)
+                print("did not successfully get pics")
+            }
+            else {
+                self.images = []
+                self.captions = []
+                for pic in pics! {
+                    self.images?.append(pic["media"] as! PFFile)
+                    self.captions?.append(pic["caption"] as! String)
+                }
+                self.isMoreDataLoading = false
+                self.feedView.reloadData()
+                MBProgressHUD.hideHUDForView(self.view, animated: true)
+                refresh.endRefreshing()
+                
+            }
+        }
+    }
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        
+        if !isMoreDataLoading {
+            let scrollViewContentHeight = feedView.contentSize.height
+            let scrollOffsetThreshold = scrollViewContentHeight - feedView.bounds.size.height
+            if (scrollView.contentOffset.y > scrollOffsetThreshold && feedView.dragging) {
+                isMoreDataLoading = true
+                
+                let frame = CGRectMake(0, feedView.contentSize.height, feedView.bounds.size.width, InfiniteScrollActivityView.defaultHeight)
+                loadingMoreView?.frame = frame
+                loadingMoreView!.startAnimating()
+                
+                loadMoreData()
+                
+            }
+            
+        }
+    }
+    
+    func loadMoreData() {
+        let query = PFQuery(className: "Post")
+        query.limit = 20
         query.orderByDescending("createdAt")
         query.findObjectsInBackgroundWithBlock { (pics: [PFObject]?, error: NSError?) in
             if error != nil {
@@ -40,9 +108,13 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                     self.images?.append(pic["media"] as! PFFile)
                     self.captions?.append(pic["caption"] as! String)
                 }
+                self.isMoreDataLoading = false
+                self.loadingMoreView!.stopAnimating()
                 self.feedView.reloadData()
             }
         }
+
+        
     }
 
     @IBAction func onSignOut(sender: AnyObject) {
