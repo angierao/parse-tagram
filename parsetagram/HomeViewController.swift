@@ -20,6 +20,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.feedView.reloadData()
         self.feedView.delegate = self
         self.feedView.dataSource = self
 

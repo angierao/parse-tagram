@@ -156,6 +156,7 @@
                                 <state key="normal" title="Upload"/>
                                 <connections>
                                     <action selector="onUpload:" destination="eMm-gR-oqE" eventType="touchUpInside" id="CTa-Vi-mGh"/>
+                                    <segue destination="mzE-Qa-ehh" kind="modal" identifier="uploadSuccess" id="SeJ-DH-wct"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -165,7 +166,6 @@
                     <connections>
                         <outlet property="captionField" destination="fxB-Wq-tPf" id="2r6-kR-VAY"/>
                         <outlet property="imageView" destination="cv6-dD-b35" id="vRd-Ss-Gci"/>
-                        <segue destination="bXQ-Aq-gCu" kind="push" identifier="uploadSuccess" id="Tkc-6M-36o"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0eA-mc-f9S" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -207,6 +207,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Tkc-6M-36o"/>
+        <segue reference="SeJ-DH-wct"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -79,6 +79,9 @@ class PostViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             imageView.image = newImage
         }
         
+        
+        
+        
         // Do something with the images (based on your use case)
         
         // Dismiss UIImagePickerController to go back to your original view controller
