@@ -24,6 +24,8 @@
 		AFD147D81D19F04600EBDBFC /* InfiniteScrollActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD147D71D19F04600EBDBFC /* InfiniteScrollActivityView.swift */; };
 		AFD147DA1D19F24400EBDBFC /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD147D91D19F24400EBDBFC /* PostDetailViewController.swift */; };
 		AFD147DC1D1A041C00EBDBFC /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD147DB1D1A041C00EBDBFC /* ProfileViewController.swift */; };
+		AFD147DE1D1B26DA00EBDBFC /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD147DD1D1B26DA00EBDBFC /* ProfileCell.swift */; };
+		AFD147E01D1B355600EBDBFC /* ProfileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD147DF1D1B355600EBDBFC /* ProfileDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +73,8 @@
 		AFD147D71D19F04600EBDBFC /* InfiniteScrollActivityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfiniteScrollActivityView.swift; sourceTree = "<group>"; };
 		AFD147D91D19F24400EBDBFC /* PostDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
 		AFD147DB1D1A041C00EBDBFC /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		AFD147DD1D1B26DA00EBDBFC /* ProfileCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
+		AFD147DF1D1B355600EBDBFC /* ProfileDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileDetailViewController.swift; sourceTree = "<group>"; };
 		DC307D58C28146882C578126 /* Pods-parsetagramTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-parsetagramTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-parsetagramTests/Pods-parsetagramTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F03FB18FB886ED7CA926800F /* Pods-parsetagram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-parsetagram.debug.xcconfig"; path = "Pods/Target Support Files/Pods-parsetagram/Pods-parsetagram.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -147,6 +151,7 @@
 				AFA466E51D170CA200F50E7A /* LaunchScreen.storyboard */,
 				AFA466E81D170CA200F50E7A /* Info.plist */,
 				AF63FFB61D18C3D500E6B89F /* PostCell.swift */,
+				AFD147DD1D1B26DA00EBDBFC /* ProfileCell.swift */,
 			);
 			path = parsetagram;
 			sourceTree = "<group>";
@@ -177,6 +182,7 @@
 				AFD147D91D19F24400EBDBFC /* PostDetailViewController.swift */,
 				AF63FFAE1D17247100E6B89F /* LoginViewController.swift */,
 				AFD147DB1D1A041C00EBDBFC /* ProfileViewController.swift */,
+				AFD147DF1D1B355600EBDBFC /* ProfileDetailViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -459,12 +465,14 @@
 				AF63FFB71D18C3D500E6B89F /* PostCell.swift in Sources */,
 				AFD147DA1D19F24400EBDBFC /* PostDetailViewController.swift in Sources */,
 				AFD147D81D19F04600EBDBFC /* InfiniteScrollActivityView.swift in Sources */,
+				AFD147E01D1B355600EBDBFC /* ProfileDetailViewController.swift in Sources */,
 				AF63FFAF1D17247100E6B89F /* LoginViewController.swift in Sources */,
 				AFA466DD1D170CA200F50E7A /* AppDelegate.swift in Sources */,
 				AF63FFB51D18B38D00E6B89F /* Post.swift in Sources */,
 				AFD147DC1D1A041C00EBDBFC /* ProfileViewController.swift in Sources */,
 				AF63FFB11D188F0C00E6B89F /* HomeViewController.swift in Sources */,
 				AF63FFB31D189BE600E6B89F /* PostViewController.swift in Sources */,
+				AFD147DE1D1B26DA00EBDBFC /* ProfileCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

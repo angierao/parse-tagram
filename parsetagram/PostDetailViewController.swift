@@ -10,9 +10,8 @@ import UIKit
 import Parse
 
 class PostDetailViewController: UIViewController {
-    var image: PFFile?
+    var post: PFObject?
     
-    var caption: String?
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var usernameLabelTop: UILabel!
     
@@ -23,8 +22,8 @@ class PostDetailViewController: UIViewController {
         super.viewDidLoad()
         
         //imageView.image = image
-        
-        image!.getDataInBackgroundWithBlock { (imageData: NSData?, error: NSError?) in
+        let image = post!["media"] as! PFFile
+        image.getDataInBackgroundWithBlock { (imageData: NSData?, error: NSError?) in
             if imageData != nil {
                 let image = UIImage(data: imageData!)
                 self.imageView.image = image
@@ -34,6 +33,7 @@ class PostDetailViewController: UIViewController {
             }
         }
         
+        let caption = post!["caption"] as! String
         captionLabel.text = caption
 
         

@@ -37,10 +37,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         postViewController.tabBarItem.title = "Post"
         //postViewController.tabBarItem.image = UIImage(named: "dvd")
         
+        let profileViewController = storyboard.instantiateViewControllerWithIdentifier("ProfileViewController")
+        profileViewController.tabBarItem.title = "You"
         
         
-        let tabBarController = UITabBarController()
-        tabBarController.viewControllers = [homeViewController, postViewController]
+//        
+//        let tabBarController = UITabBarController()
+//        tabBarController.viewControllers = [homeViewController, postViewController, profileViewController]
+        let tabBarController = storyboard.instantiateViewControllerWithIdentifier("HomeTabBarController") as! UITabBarController
 
         if PFUser.currentUser() != nil {
             // if there is a logged in user then load the home view controller

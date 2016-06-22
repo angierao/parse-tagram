@@ -13,13 +13,8 @@ import MBProgressHUD
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
 
     @IBOutlet weak var feedView: UITableView!
-
-    var images: [PFFile]?
     
-    var captions: [String]?
-    
-    var users: [PFUser]?
-    
+    var posts: [PFObject]?
     var isMoreDataLoading = false
     var loadingMoreView:InfiniteScrollActivityView?
     
@@ -61,14 +56,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 print("did not successfully get pics")
             }
             else {
-                self.images = []
-                self.captions = []
-                self.users = []
-                for pic in pics! {
-                    self.images?.append(pic["media"] as! PFFile)
-                    self.captions?.append(pic["caption"] as! String)
-                    self.users?.append(pic["author"] as! PFUser)
-                }
+                self.posts = pics
                 self.isMoreDataLoading = false
                 self.feedView.reloadData()
                 MBProgressHUD.hideHUDForView(self.view, animated: true)
@@ -89,8 +77,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 let frame = CGRectMake(0, feedView.contentSize.height, feedView.bounds.size.width, InfiniteScrollActivityView.defaultHeight)
                 loadingMoreView?.frame = frame
                 loadingMoreView!.startAnimating()
-                
-                loadMoreData()
+                self.loadMoreData()
                 
             }
         }
@@ -107,40 +94,24 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 print("did not successfully get pics")
             }
             else {
-                self.images = []
-                self.captions = []
-                self.users = []
-                for pic in pics! {
-                    self.images?.append(pic["media"] as! PFFile)
-                    self.captions?.append(pic["caption"] as! String)
-                    self.users?.append(pic["_p_author"] as! PFUser)
-                }
+                self.posts = pics
                 self.isMoreDataLoading = false
                 self.loadingMoreView!.stopAnimating()
                 self.feedView.reloadData()
             }
         }
+    }
 
+    
+    @IBAction func onLike(sender: AnyObject) {
         
     }
-
-    @IBAction func onSignOut(sender: AnyObject) {
-        PFUser.logOutInBackgroundWithBlock { (error: NSError?) in
-            // PFUser.currentUser() will now be nil
-            self.performSegueWithIdentifier("logoutSegue", sender: nil)
-        }
-    }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = self.feedView.dequeueReusableCellWithIdentifier("PostCell", forIndexPath: indexPath) as! PostCell
-    
-        let image = images![indexPath.row]
-        image.getDataInBackgroundWithBlock { (imageData: NSData?, error: NSError?) in
+        let post = posts![indexPath.row]
+        let imageFile = post["media"] as! PFFile
+        imageFile.getDataInBackgroundWithBlock { (imageData: NSData?, error: NSError?) in
             if imageData != nil {
                 let image = UIImage(data: imageData!)
                 cell.pictureView.image = image
@@ -149,29 +120,22 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 print(error)
             }
         }
-        let caption = captions![indexPath.row] as String
-        cell.captionLabel.text = caption
-        let user = users![indexPath.row]
-        do {
-            try user.fetchIfNeeded()
-        }
-        catch {
-            print("catching failed")
-        }
-        /*
-        user.fetchIfNeededInBackgroundWithBlock { (object: PFObject?, error: NSError?) in
-            if object == nil {
-                print(error)
-            }
-        } */
         
-        cell.usernameLabel.text = user.username
+        cell.captionLabel.text = post["caption"] as? String
+        
+        let numLikes = post["likesCount"] as! Int
+        if numLikes == 0 {
+            cell.likeLabel.text = ""
+        }
+        else {
+            cell.likeLabel.text = "\(numLikes) likes"
+        }
         
         return cell
-    }
+        }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return images?.count ?? 0
+        return posts?.count ?? 0
     }
 
     // MARK: - Navigation
@@ -180,13 +144,19 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        //if sender?.identifier ==
         let detailViewController = segue.destinationViewController as! PostDetailViewController
         let indexPath = feedView.indexPathForCell(sender as! UITableViewCell)
-        let image = images![(indexPath?.row)!]
-        let caption = captions![indexPath!.row]
-        detailViewController.image = image
-        detailViewController.caption = caption
+        let post = posts![indexPath!.row]
+        detailViewController.post = post
+
         
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
     
 

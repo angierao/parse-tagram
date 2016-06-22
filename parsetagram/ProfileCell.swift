@@ -1,23 +1,19 @@
 //
-//  PostCell.swift
+//  ProfileCell.swift
 //  parsetagram
 //
-//  Created by Angeline Rao on 6/20/16.
+//  Created by Angeline Rao on 6/22/16.
 //  Copyright © 2016 Angeline Rao. All rights reserved.
 //
 
 import UIKit
 
-class PostCell: UITableViewCell {
-    
-    
-    @IBOutlet weak var pictureView: UIImageView!
-    @IBOutlet weak var captionLabel: UILabel!
-    @IBOutlet weak var usernameLabel: UILabel!
-    
-    @IBOutlet weak var likeLabel: UILabel!
+class ProfileCell: UITableViewCell {
 
-    @IBOutlet weak var likeButton: UIButton!
+    @IBOutlet weak var profileView: UIImageView!
+    
+    @IBOutlet weak var likesLabel: UILabel!
+    @IBOutlet weak var captionLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
