@@ -12,11 +12,13 @@ import Parse
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var posts: [PFObject]?
+    @IBOutlet weak var usernameLabel: UILabel!
 
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        let user = PFUser.currentUser()
+        usernameLabel.text = user?.username
         // Do any additional setup after loading the view.
         
         self.tableView.delegate = self
@@ -27,6 +29,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     func loadMoreData() {
         let query = PFQuery(className: "Post")
         query.limit = 20
+        query.whereKey("author", equalTo: PFUser.currentUser()!)
         query.orderByDescending("createdAt")
         query.includeKey("user")
         query.findObjectsInBackgroundWithBlock { (pics: [PFObject]?, error: NSError?) in
@@ -40,7 +43,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 }
                 self.tableView.reloadData()
             }
-        
     }
 
     
@@ -101,9 +103,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         let detailViewController = segue.destinationViewController as! PostDetailViewController
         let indexPath = tableView.indexPathForCell(sender as! UITableViewCell)
         let post = posts![indexPath!.row]
-        /*
-        let image = images![(indexPath?.row)!]
-        let caption = captions![indexPath!.row] */
         detailViewController.post = post
         }
 

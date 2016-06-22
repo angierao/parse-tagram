@@ -35,9 +35,6 @@ class PostDetailViewController: UIViewController {
         
         let caption = post!["caption"] as! String
         captionLabel.text = caption
-
-        
-
         // Do any additional setup after loading the view.
     }
 

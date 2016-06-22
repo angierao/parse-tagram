@@ -146,26 +146,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="cv6-dD-b35">
-                                <rect key="frame" x="0.0" y="66" width="320" height="368"/>
+                                <rect key="frame" x="0.0" y="104" width="320" height="330"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="vjT-qM-vHN">
-                                <rect key="frame" x="0.0" y="28" width="159" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Library"/>
-                                <connections>
-                                    <action selector="onUploadImage:" destination="eMm-gR-oqE" eventType="touchUpInside" id="ElW-Wx-ILc"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="118-uP-Mkw">
-                                <rect key="frame" x="141" y="28" width="159" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Camera"/>
-                                <connections>
-                                    <action selector="onTakePicture:" destination="eMm-gR-oqE" eventType="touchUpInside" id="FFf-PM-TNU"/>
-                                    <action selector="onUploadImage:" destination="eMm-gR-oqE" eventType="touchUpInside" id="QWc-3K-4Th"/>
-                                </connections>
-                            </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="fxB-Wq-tPf">
                                 <rect key="frame" x="37" y="450" width="246" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -178,6 +161,23 @@
                                 <state key="normal" title="Upload"/>
                                 <connections>
                                     <action selector="onUpload:" destination="eMm-gR-oqE" eventType="touchUpInside" id="CTa-Vi-mGh"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="vjT-qM-vHN">
+                                <rect key="frame" x="20" y="64" width="136" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Library"/>
+                                <connections>
+                                    <action selector="onUploadImage:" destination="eMm-gR-oqE" eventType="touchUpInside" id="ElW-Wx-ILc"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="118-uP-Mkw">
+                                <rect key="frame" x="192" y="65" width="97" height="40.5"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Camera"/>
+                                <connections>
+                                    <action selector="onTakePicture:" destination="eMm-gR-oqE" eventType="touchUpInside" id="FFf-PM-TNU"/>
+                                    <action selector="onUploadImage:" destination="eMm-gR-oqE" eventType="touchUpInside" id="QWc-3K-4Th"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -311,8 +311,8 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Caption" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0wq-F0-g66">
-                                                    <rect key="frame" x="8" y="246" width="48" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Caption" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0wq-F0-g66">
+                                                    <rect key="frame" x="8" y="246" width="279" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -352,6 +352,7 @@
                     <navigationItem key="navigationItem" title="Profile" id="tYV-4L-q9o"/>
                     <connections>
                         <outlet property="tableView" destination="Jfo-pa-Uzy" id="Ida-d2-VUs"/>
+                        <outlet property="usernameLabel" destination="2e4-Q2-BHJ" id="6Ce-Xk-wch"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VQJ-Zf-ZaN" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -419,6 +420,6 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="eVK-Yh-XJ3"/>
-        <segue reference="cag-gv-bVW"/>
+        <segue reference="jto-cI-4FR"/>
     </inferredMetricsTieBreakers>
 </document>

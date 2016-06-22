@@ -17,6 +17,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var posts: [PFObject]?
     var isMoreDataLoading = false
     var loadingMoreView:InfiniteScrollActivityView?
+    var queryLimit: Int? = 20
     
     
     override func viewDidLoad() {
@@ -44,7 +45,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func loadFeed(refresh: UIRefreshControl, firstLoad: Bool) {
         let query = PFQuery(className: "Post")
-        query.limit = 20
+        query.limit = queryLimit!
         query.orderByDescending("createdAt")
         query.includeKey("user")
         if firstLoad {
@@ -85,7 +86,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func loadMoreData() {
         let query = PFQuery(className: "Post")
-        query.limit = 20
+        queryLimit = queryLimit! + 20
+        query.limit = queryLimit!
         query.orderByDescending("createdAt")
         query.includeKey("user")
         query.findObjectsInBackgroundWithBlock { (pics: [PFObject]?, error: NSError?) in
@@ -130,7 +132,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         else {
             cell.likeLabel.text = "\(numLikes) likes"
         }
-        
+        let user = post["author"] as! PFUser
+        do {
+            try user.fetchIfNeeded()
+        }
+        catch {
+            print("didn't work. sigh")
+        }
+        cell.usernameLabel.text = user.username
         return cell
         }
     
