@@ -25,13 +25,41 @@ class Post: NSObject {
         // Create Parse object PFObject
         let post = PFObject(className: "Post")
         
+
+        let date = NSDate()
+        let calendar = NSCalendar.currentCalendar()
+        let components = calendar.components([.Year, .Month, .Day, .Hour , .Minute, .Second], fromDate:date)
+        
+        let year = components.year
+        let month = components.month
+        let day = components.day
+        let hour = components.hour
+        let min = components.minute
+        let sec = components.second
+        
+        let currentDate = NSDateComponents()
+        currentDate.year = year
+        currentDate.month = month
+        currentDate.day = day
+        currentDate.hour = hour
+        currentDate.minute = min
+        currentDate.second = sec
+        
+        let today = NSCalendar.currentCalendar().dateFromComponents(currentDate)!
+        
+        let dateFormatter = NSDateFormatter()
+        //let date = NSDate()
+        dateFormatter.dateFormat = "MMM d, H:mm a"
+        let dateString = dateFormatter.stringFromDate(today)
+        print(dateString)
+        
         // Add relevant fields to the object
         post["media"] = getPFFileFromImage(image) // PFFile column type
         post["author"] = PFUser.currentUser() // Pointer column type that points to PFUser
         post["caption"] = caption
         post["likesCount"] = 0
         post["commentsCount"] = 0
-        post["creationTime"] = 1
+        post["creationString"] = dateString
         
         // Save object (following function will save the object in Parse asynchronously)
         post.saveInBackgroundWithBlock(completion)

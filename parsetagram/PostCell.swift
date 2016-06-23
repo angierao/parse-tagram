@@ -15,6 +15,7 @@ class PostCell: UITableViewCell {
     @IBOutlet weak var captionLabel: UILabel!
     @IBOutlet weak var usernameLabel: UILabel!
     
+    @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var likeLabel: UILabel!
 
     @IBOutlet weak var likeButton: UIButton!

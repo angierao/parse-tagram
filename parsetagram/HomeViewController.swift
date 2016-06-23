@@ -140,6 +140,18 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             print("didn't work. sigh")
         }
         cell.usernameLabel.text = user.username
+        /*
+        let timeStamp: [Int] = post["creationTime"] as! [Int]
+        cell.timeLabel.text = "\(timeStamp[0])/\(timeStamp[1]) at \(timeStamp[2]): \(timeStamp[3])" */
+        
+        if let date = post["creationString"] as? String {
+            cell.timeLabel.text = date
+        }
+        else {
+            cell.timeLabel.text = ""
+        }
+        
+        
         return cell
         }
     
