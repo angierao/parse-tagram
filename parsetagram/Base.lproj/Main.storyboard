@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="cFH-Ys-2tu">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -70,55 +70,62 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="293" sectionHeaderHeight="28" sectionFooterHeight="28" id="dDd-by-dPW">
-                                <rect key="frame" x="0.0" y="26" width="320" height="492"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="334" sectionHeaderHeight="28" sectionFooterHeight="28" id="dDd-by-dPW">
+                                <rect key="frame" x="0.0" y="68" width="320" height="450"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="PostCell" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="PostCell" rowHeight="293" id="ueh-GG-N1H" customClass="PostCell" customModule="parsetagram" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="92" width="320" height="293"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="PostCell" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="PostCell" rowHeight="334" id="ueh-GG-N1H" customClass="PostCell" customModule="parsetagram" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="92" width="320" height="334"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ueh-GG-N1H" id="ag5-Wn-4UW">
-                                            <rect key="frame" x="0.0" y="0.0" width="287" height="292.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="333.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="46d-m3-nlR">
-                                                    <rect key="frame" x="0.0" y="15" width="320" height="210"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QhD-xX-yaN">
-                                                    <rect key="frame" x="8" y="0.0" width="271" height="14"/>
+                                                    <rect key="frame" x="71" y="8" width="104" height="14"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Likes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="n3D-pg-fYI">
-                                                    <rect key="frame" x="8" y="245" width="66" height="21"/>
+                                                    <rect key="frame" x="8" y="288" width="66" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Caption" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qaq-yK-IzH">
-                                                    <rect key="frame" x="8" y="263" width="290" height="21"/>
+                                                    <rect key="frame" x="8" y="308" width="290" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="VWz-WP-8wj">
-                                                    <rect key="frame" x="0.0" y="225" width="45" height="30"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="VWz-WP-8wj">
+                                                    <rect key="frame" x="8" y="269" width="17" height="16"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" title="Like"/>
+                                                    <state key="normal" title="Like" image="likeButton"/>
+                                                    <connections>
+                                                        <action selector="onLike:" destination="mzE-Qa-ehh" eventType="touchUpInside" id="Syh-iz-hx2"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FYj-6U-9sO">
-                                                    <rect key="frame" x="76" y="-4" width="133" height="21"/>
+                                                    <rect key="frame" x="69" y="24" width="133" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                     <color key="textColor" red="0.56403386780104714" green="0.56403386780104714" blue="0.56403386780104714" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="48E-FH-tEq">
+                                                    <rect key="frame" x="5" y="10" width="56" height="50"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="46d-m3-nlR">
+                                                    <rect key="frame" x="0.0" y="68" width="320" height="195"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
@@ -126,6 +133,7 @@
                                             <outlet property="likeButton" destination="VWz-WP-8wj" id="0xe-Og-8ut"/>
                                             <outlet property="likeLabel" destination="n3D-pg-fYI" id="93V-0E-DZU"/>
                                             <outlet property="pictureView" destination="46d-m3-nlR" id="VwL-Kc-pTl"/>
+                                            <outlet property="profPicView" destination="48E-FH-tEq" id="wIr-ub-zUi"/>
                                             <outlet property="timeLabel" destination="FYj-6U-9sO" id="Yqt-yc-u0H"/>
                                             <outlet property="usernameLabel" destination="QhD-xX-yaN" id="6wZ-F5-ggB"/>
                                             <segue destination="9TD-JH-Dtz" kind="push" id="UAA-kk-Qy5"/>
@@ -284,6 +292,10 @@
                                 <rect key="frame" x="20" y="507" width="154" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Change Profile Picture"/>
+                                <connections>
+                                    <action selector="onChangeProfPic:" destination="K7z-4E-heo" eventType="touchUpInside" id="NUJ-rV-Vue"/>
+                                    <segue destination="bXQ-Aq-gCu" kind="modal" identifier="changeSuccess" id="DVG-1K-PJe"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="0Co-o6-0bk">
                                 <rect key="frame" x="235" y="507" width="48" height="30"/>
@@ -321,25 +333,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eHU-bh-OL4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1110" y="291"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="3gj-K8-e8c">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="cFH-Ys-2tu" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="uep-wb-dub"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="KUK-dq-GFz">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="wnp-UX-ApV"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ixe-11-TwU" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="130" y="291"/>
         </scene>
         <!--ProfileViewController-->
         <scene sceneID="E71-dV-mdD">
@@ -397,7 +390,6 @@
                                 <state key="normal" title="Sign out"/>
                                 <connections>
                                     <action selector="onSignOut:" destination="ZEy-UN-lOc" eventType="touchUpInside" id="fo5-pU-XC5"/>
-                                    <segue destination="cFH-Ys-2tu" kind="modal" identifier="logoutSegue" id="s0K-YN-FGC"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2e4-Q2-BHJ">
@@ -478,7 +470,7 @@
             </objects>
             <point key="canvasLocation" x="1556" y="1085"/>
         </scene>
-        <!--Collection View Controller-->
+        <!--Profile-->
         <scene sceneID="5Gd-fr-MYs">
             <objects>
                 <viewController id="w8m-40-HbJ" customClass="CollectionViewController" customModule="parsetagram" customModuleProvider="target" sceneMemberID="viewController">
@@ -548,24 +540,25 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="onUpdateProfPic:" destination="w8m-40-HbJ" eventType="touchUpInside" id="LYY-AP-4cS"/>
-                                    <segue destination="K7z-4E-heo" kind="modal" id="Fnw-4y-IS3"/>
+                                    <segue destination="K7z-4E-heo" kind="modal" identifier="updateSegue" id="Fnw-4y-IS3"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="HmP-YZ-LDU">
-                                <rect key="frame" x="249" y="86" width="57" height="30"/>
+                                <rect key="frame" x="248" y="65" width="57" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Sign out"/>
                                 <connections>
                                     <action selector="onSignOut:" destination="w8m-40-HbJ" eventType="touchUpInside" id="WWg-6z-DLR"/>
-                                    <segue destination="cFH-Ys-2tu" kind="modal" identifier="logoutSegue2" id="CSd-Cx-KQV"/>
+                                    <segue destination="BYZ-38-t0r" kind="modal" identifier="logoutSegue2" id="X5t-Hk-BKX"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Kae-vm-Hfj"/>
+                    <navigationItem key="navigationItem" title="Profile" id="Kae-vm-Hfj"/>
                     <connections>
                         <outlet property="collectionView" destination="RUw-Iy-ZMM" id="iDF-GG-6Ym"/>
+                        <outlet property="profPicView" destination="HAU-pl-4dd" id="fal-fe-ua8"/>
                         <outlet property="usernameLabel" destination="LOB-h4-Nfz" id="zSt-Mh-LDD"/>
                     </connections>
                 </viewController>
@@ -579,6 +572,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Vbb-UY-OZ6" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="XDg-LK-OAt"/>
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="MYV-8Z-qGi"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="21F-7b-Dsy">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -593,9 +587,11 @@
             <point key="canvasLocation" x="1932" y="1085"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="likeButton" width="25" height="25"/>
+    </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="jto-cI-4FR"/>
-        <segue reference="ywZ-Ay-ewh"/>
-        <segue reference="CSd-Cx-KQV"/>
+        <segue reference="DVG-1K-PJe"/>
+        <segue reference="UAA-kk-Qy5"/>
     </inferredMetricsTieBreakers>
 </document>

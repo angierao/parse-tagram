@@ -68,8 +68,48 @@ class PicSelectorViewController: UIViewController, UINavigationControllerDelegat
         // Dismiss UIImagePickerController to go back to your original view controller
         dismissViewControllerAnimated(true, completion: nil)
     }
-
     
+    
+    @IBAction func onChangeProfPic(sender: AnyObject) {
+        if profPicView.image == nil {
+            print("Image not uploaded")
+        }
+        else {
+            let imageFile = getPFFileFromImage(profPicView.image)
+            imageFile?.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) in
+                if error != nil {
+                    print(error)
+                }
+                else {
+                    let user = PFUser.currentUser()
+                    user?.setObject(imageFile!, forKey: "profilePic")
+                    user?.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) in
+                        if error != nil {
+                            print(error)
+                        }
+                        else {
+                            print("got the prof pic")
+                            self.performSegueWithIdentifier("changeSuccess", sender: nil)
+                        }
+                    })
+                }
+            })
+        
+            
+        }
+    }
+    
+    func getPFFileFromImage(image: UIImage?) -> PFFile? {
+        // check if image is not nil
+        if let image = image {
+            // get image data and check if that is not nil
+            if let imageData = UIImagePNGRepresentation(image) {
+                return PFFile(name: "image.png", data: imageData)
+            }
+        }
+        return nil
+    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

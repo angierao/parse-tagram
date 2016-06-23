@@ -25,7 +25,6 @@ class Post: NSObject {
         // Create Parse object PFObject
         let post = PFObject(className: "Post")
         
-
         let date = NSDate()
         let calendar = NSCalendar.currentCalendar()
         let components = calendar.components([.Year, .Month, .Day, .Hour , .Minute, .Second], fromDate:date)

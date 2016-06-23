@@ -11,6 +11,7 @@ import Parse
 
 class CollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
+    @IBOutlet weak var profPicView: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
     var posts: [PFObject]?
     @IBOutlet weak var collectionView: UICollectionView!
@@ -24,12 +25,27 @@ class CollectionViewController: UIViewController, UICollectionViewDataSource, UI
         
         let user = PFUser.currentUser()
         usernameLabel.text = user?.username
-        
+        if let profpic = user!["profilePic"] as? PFFile {
+            profpic.getDataInBackgroundWithBlock { (imageData: NSData?, error: NSError?) in
+                if imageData != nil {
+                    print("got em")
+                    let image = UIImage(data: imageData!)
+                    self.profPicView.image = image
+                }
+                else {
+                    print(error)
+                }
+            }
+        }
+        else {
+            self.profPicView.image = UIImage()
+        }
         
     }
     
     
     @IBAction func onUpdateProfPic(sender: AnyObject) {
+
     }
     
     func postForIndexPath(indexPath: NSIndexPath, cell: CollectionViewCell) -> UIImage {
@@ -100,7 +116,7 @@ class CollectionViewController: UIViewController, UICollectionViewDataSource, UI
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         
-        if segue.identifier != "logoutSegue2" {
+        if segue.identifier != "logoutSegue2" && segue.identifier != "updateSegue" {
             
             
             let detailViewController = segue.destinationViewController as! PostDetailViewController

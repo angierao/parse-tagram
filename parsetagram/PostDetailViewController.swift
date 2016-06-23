@@ -37,12 +37,7 @@ class PostDetailViewController: UIViewController {
         captionLabel.text = caption
         
         let user = post!["author"] as! PFUser
-        do {
-            try user.fetchIfNeeded()
-        }
-        catch {
-            print("didn't work. sigh")
-        }
+
         usernameLabelTop.text = user.username
         usernameLabelBottom.text = user.username
         

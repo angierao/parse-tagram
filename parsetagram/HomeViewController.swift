@@ -18,6 +18,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var isMoreDataLoading = false
     var loadingMoreView:InfiniteScrollActivityView?
     var queryLimit: Int? = 20
+    var isLiked = false
     
     
     override func viewDidLoad() {
@@ -47,7 +48,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let query = PFQuery(className: "Post")
         query.limit = queryLimit!
         query.orderByDescending("createdAt")
-        query.includeKey("user")
+        query.includeKey("author")
         if firstLoad {
             MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         }
@@ -89,7 +90,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         queryLimit = queryLimit! + 20
         query.limit = queryLimit!
         query.orderByDescending("createdAt")
-        query.includeKey("user")
+        query.includeKey("author")
         query.findObjectsInBackgroundWithBlock { (pics: [PFObject]?, error: NSError?) in
             if error != nil {
                 print(error)
@@ -105,9 +106,47 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     
-    @IBAction func onLike(sender: AnyObject) {
+    @IBAction func onLike(sender: UIButton) {
+//        sender.enabled = false
+//        sender.userInteractionEnabled = false
+//        sender.alpha = 0.5
+        
+        //get the point in the table view that corresponds to the button that was pressed
+        //in my case these were a bunch of cells each with their own like button
+        let hitPoint = sender.convertPoint(CGPointZero, toView: self.feedView)
+        let indexPath = self.feedView.indexPathForRowAtPoint(hitPoint)
+        let post = posts![(indexPath?.row)!]
+        let cell = self.feedView.cellForRowAtIndexPath((indexPath)!) as! PostCell
+        //let object = self.feedView.cellForRowAtIndexPath(hitIndex!)
+        //this is where I incremented the key for the object
+        
+        // if you just liked the pic
+        if !isLiked {
+            let image = UIImage(named: "likedButton")
+            cell.likeButton.setImage(image, forState: UIControlState.Normal)
+            post.incrementKey("likesCount")
+            isLiked = true
+        }
+        else {
+            let image = UIImage(named: "likeButton")
+            cell.likeButton.setImage(image, forState: UIControlState.Normal)
+            post.incrementKey("likesCount", byAmount: -1)
+            isLiked = false
+            
+        }
+        post.saveInBackgroundWithBlock { (success: Bool, error: NSError?) in
+            if success {
+                self.feedView.reloadData()
+            }
+            else {
+                print(error)
+            }
+        }
+
+        
         
     }
+
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = self.feedView.dequeueReusableCellWithIdentifier("PostCell", forIndexPath: indexPath) as! PostCell
@@ -129,20 +168,31 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         if numLikes == 0 {
             cell.likeLabel.text = ""
         }
+        else if numLikes == 1 {
+            cell.likeLabel.text = "1 like"
+        }
         else {
             cell.likeLabel.text = "\(numLikes) likes"
         }
         let user = post["author"] as! PFUser
-        do {
-            try user.fetchIfNeeded()
+        if let username = user.username {
+            cell.usernameLabel.text = username
         }
-        catch {
-            print("didn't work. sigh")
+        
+        if let profpic = user["profilePic"] as? PFFile {
+            profpic.getDataInBackgroundWithBlock { (imageData: NSData?, error: NSError?) in
+                if imageData != nil {
+                    let image = UIImage(data: imageData!)
+                    cell.profPicView.image = image
+                }
+                else {
+                    print(error)
+                }
+            }
         }
-        cell.usernameLabel.text = user.username
-        /*
-        let timeStamp: [Int] = post["creationTime"] as! [Int]
-        cell.timeLabel.text = "\(timeStamp[0])/\(timeStamp[1]) at \(timeStamp[2]): \(timeStamp[3])" */
+        else {
+            cell.profPicView.image = UIImage()
+        }
         
         if let date = post["creationString"] as? String {
             cell.timeLabel.text = date
