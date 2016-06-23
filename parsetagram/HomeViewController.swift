@@ -44,6 +44,13 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         feedView.contentInset = insets
     }
     
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let vw = UIView()
+        vw.backgroundColor = UIColor.blackColor()
+        
+        return vw
+    }
+    
     func loadFeed(refresh: UIRefreshControl, firstLoad: Bool) {
         let query = PFQuery(className: "Post")
         query.limit = queryLimit!
