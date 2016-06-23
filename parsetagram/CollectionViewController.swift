@@ -28,6 +28,10 @@ class CollectionViewController: UIViewController, UICollectionViewDataSource, UI
         
     }
     
+    
+    @IBAction func onUpdateProfPic(sender: AnyObject) {
+    }
+    
     func postForIndexPath(indexPath: NSIndexPath, cell: CollectionViewCell) -> UIImage {
         let post = posts![indexPath.row]
         let imageFile = post["media"] as! PFFile
@@ -72,6 +76,14 @@ class CollectionViewController: UIViewController, UICollectionViewDataSource, UI
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CollectionViewCell", forIndexPath: indexPath) as! CollectionViewCell
         postForIndexPath(indexPath, cell: cell)
         return cell
+        
+    }
+
+    @IBAction func onSignOut(sender: AnyObject) {
+        PFUser.logOutInBackgroundWithBlock { (error: NSError?) in
+            // PFUser.currentUser() will now be nil
+            self.performSegueWithIdentifier("logoutSegue2", sender: nil)
+        }
         
     }
     override func didReceiveMemoryWarning() {

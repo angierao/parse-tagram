@@ -10,6 +10,7 @@
 		2A6066F6DF33078408052110 /* Pods_parsetagramUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6643E6DFE950142B19F37090 /* Pods_parsetagramUITests.framework */; };
 		808DA4E5BDAD967BADB90B5D /* Pods_parsetagramTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73DF8A573AA7C01037E0C0A5 /* Pods_parsetagramTests.framework */; };
 		97DA58930D63B23BED77E43D /* Pods_parsetagram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E63BD0CB2BFD7A6B592EDAE /* Pods_parsetagram.framework */; };
+		AF5E67F61D1C72E10008AF54 /* PicSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5E67F51D1C72E10008AF54 /* PicSelectorViewController.swift */; };
 		AF63FFAF1D17247100E6B89F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF63FFAE1D17247100E6B89F /* LoginViewController.swift */; };
 		AF63FFB11D188F0C00E6B89F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF63FFB01D188F0C00E6B89F /* HomeViewController.swift */; };
 		AF63FFB31D189BE600E6B89F /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF63FFB21D189BE600E6B89F /* PostViewController.swift */; };
@@ -55,6 +56,7 @@
 		66A24A0B193774BD9B56FABE /* Pods-parsetagramUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-parsetagramUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-parsetagramUITests/Pods-parsetagramUITests.release.xcconfig"; sourceTree = "<group>"; };
 		73DF8A573AA7C01037E0C0A5 /* Pods_parsetagramTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_parsetagramTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		811ACBDFEF58E8AB9E1252F0 /* Pods-parsetagramTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-parsetagramTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-parsetagramTests/Pods-parsetagramTests.release.xcconfig"; sourceTree = "<group>"; };
+		AF5E67F51D1C72E10008AF54 /* PicSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PicSelectorViewController.swift; sourceTree = "<group>"; };
 		AF63FFAE1D17247100E6B89F /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		AF63FFB01D188F0C00E6B89F /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		AF63FFB21D189BE600E6B89F /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 		AFD147D61D19F01500EBDBFC /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				AF5E67F51D1C72E10008AF54 /* PicSelectorViewController.swift */,
 				AF63FFB21D189BE600E6B89F /* PostViewController.swift */,
 				AF63FFB01D188F0C00E6B89F /* HomeViewController.swift */,
 				AFD147D91D19F24400EBDBFC /* PostDetailViewController.swift */,
@@ -474,6 +477,7 @@
 				AFD147D81D19F04600EBDBFC /* InfiniteScrollActivityView.swift in Sources */,
 				AFD147E01D1B355600EBDBFC /* ProfileDetailViewController.swift in Sources */,
 				AF63FFAF1D17247100E6B89F /* LoginViewController.swift in Sources */,
+				AF5E67F61D1C72E10008AF54 /* PicSelectorViewController.swift in Sources */,
 				AFA466DD1D170CA200F50E7A /* AppDelegate.swift in Sources */,
 				AF63FFB51D18B38D00E6B89F /* Post.swift in Sources */,
 				AFD147E41D1B5C2600EBDBFC /* CollectionViewCell.swift in Sources */,
