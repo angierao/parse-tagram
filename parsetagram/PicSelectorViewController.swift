@@ -11,6 +11,7 @@ import Parse
 
 class PicSelectorViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIAlertViewDelegate {
     
+    @IBOutlet weak var selectLabel: UILabel!
     @IBOutlet weak var profPicView: UIImageView!
     let imagePicker = UIImagePickerController()
     
@@ -45,6 +46,9 @@ class PicSelectorViewController: UIViewController, UINavigationControllerDelegat
          imageView.contentMode = .ScaleAspectFit
          imageView.image = pickedImage
          } */
+        
+        self.selectLabel.hidden = true
+        profPicView.backgroundColor = UIColor.whiteColor()
         
         if let pickedImage = info["UIImagePickerControllerEditedImage"] as? UIImage {
             newImage = pickedImage

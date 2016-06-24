@@ -37,8 +37,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         postViewController.tabBarItem.title = "Post"
         //postViewController.tabBarItem.image = UIImage(named: "dvd")
         
-        let profileViewController = storyboard.instantiateViewControllerWithIdentifier("ProfileViewController")
-        profileViewController.tabBarItem.title = "You"
+//        let profileViewController = storyboard.instantiateViewControllerWithIdentifier("ProfileViewController")
+//        profileViewController.tabBarItem.title = "You"
         
         
 //        

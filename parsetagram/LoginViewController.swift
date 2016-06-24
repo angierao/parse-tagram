@@ -35,7 +35,6 @@ class LoginViewController: UIViewController {
     
     
     @IBAction func onSignUp(sender: AnyObject) {
-        
         let newUser = PFUser()
         
         // set user properties

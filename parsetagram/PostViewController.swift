@@ -8,22 +8,37 @@
 
 import UIKit
 import Parse
+import QuartzCore
 
 class PostViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate {
 
+    @IBOutlet weak var cameraButton: UIButton!
+    @IBOutlet weak var libraryButton: UIButton!
     @IBOutlet weak var imageView: UIImageView!
     
+    @IBOutlet weak var selectLabel: UILabel!
     @IBOutlet weak var captionField: UITextField!
     //@IBOutlet weak var postControl: UISegmentedControl!
     let imagePicker = UIImagePickerController()
+    
+    @IBInspectable var borderColor: UIColor? {
+        didSet {
+            libraryButton.layer.borderColor = borderColor?.CGColor
+            libraryButton.layer.borderWidth = 1
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        
+        libraryButton.layer.cornerRadius = 10
+        libraryButton.clipsToBounds = true
+        cameraButton.layer.cornerRadius = 10
+        cameraButton.clipsToBounds = true
         imagePicker.delegate = self
         imagePicker.allowsEditing = true
+        
     }
     
     @IBAction func onUploadImage(sender: AnyObject) {
@@ -64,7 +79,8 @@ class PostViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             imageView.contentMode = .ScaleAspectFit
             imageView.image = pickedImage
         } */
-        
+        self.selectLabel.hidden = true
+        imageView.backgroundColor = UIColor.whiteColor()
         if let pickedImage = info["UIImagePickerControllerEditedImage"] as? UIImage {
             newImage = pickedImage
             
@@ -124,4 +140,14 @@ class PostViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     }
     */
 
+}
+
+extension CALayer {
+    func borderUIColor() -> UIColor? {
+        return borderColor != nil ? UIColor(CGColor: borderColor!) : nil
+    }
+    
+    func setBorderUIColor(color: UIColor) {
+        borderColor = color.CGColor
+    }
 }

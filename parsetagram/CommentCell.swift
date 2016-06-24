@@ -1,24 +1,20 @@
 //
-//  PostCell.swift
+//  CommentCell.swift
 //  parsetagram
 //
-//  Created by Angeline Rao on 6/20/16.
+//  Created by Angeline Rao on 6/23/16.
 //  Copyright © 2016 Angeline Rao. All rights reserved.
 //
 
 import UIKit
 
-class PostCell: UITableViewCell {
-    
-    
-    @IBOutlet weak var pictureView: UIImageView!
-    @IBOutlet weak var captionLabel: UILabel!
-    
-    @IBOutlet weak var likeLabel: UILabel!
+class CommentCell: UITableViewCell {
 
     @IBOutlet weak var usernameLabel: UILabel!
-    @IBOutlet weak var likeButton: UIButton!
-    @IBOutlet weak var commentButton: UIButton!
+    
+    @IBOutlet weak var profPIcView: UIImageView!
+    @IBOutlet weak var commentLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -48,9 +48,8 @@ class Post: NSObject {
         
         let dateFormatter = NSDateFormatter()
         //let date = NSDate()
-        dateFormatter.dateFormat = "MMM d, H:mm a"
+        dateFormatter.dateFormat = "MMM d, h:mm a"
         let dateString = dateFormatter.stringFromDate(today)
-        print(dateString)
         
         // Add relevant fields to the object
         post["media"] = getPFFileFromImage(image) // PFFile column type
@@ -59,6 +58,7 @@ class Post: NSObject {
         post["likesCount"] = 0
         post["commentsCount"] = 0
         post["creationString"] = dateString
+        post["comments"] = []
         
         // Save object (following function will save the object in Parse asynchronously)
         post.saveInBackgroundWithBlock(completion)

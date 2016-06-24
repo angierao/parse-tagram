@@ -26,6 +26,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         self.feedView.delegate = self
         self.feedView.dataSource = self
+        
 
         // Do any additional setup after loading the view.
        
@@ -44,6 +45,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         feedView.contentInset = insets
     }
     
+    @IBAction func onComment(sender: AnyObject) {
+        
+    }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
@@ -67,6 +71,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         else {
             headerCell.timeLabel.text = ""
         }
+        
+        if let caption = post["caption"] as? String {
+            headerCell.captionLabel.text = caption
+        }
+        else {
+            headerCell.captionLabel.text = ""
+        }
+        
         
         if let profpic = user["profilePic"] as? PFFile {
             profpic.getDataInBackgroundWithBlock { (imageData: NSData?, error: NSError?) in
@@ -155,9 +167,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         //get the point in the table view that corresponds to the button that was pressed
         //in my case these were a bunch of cells each with their own like button
+        
         let hitPoint = sender.convertPoint(CGPointZero, toView: self.feedView)
         let indexPath = self.feedView.indexPathForRowAtPoint(hitPoint)
-        let post = posts![(indexPath?.row)!]
+        let post = posts![(indexPath?.section)!]
+        print(post["likesCount"])
         let cell = self.feedView.cellForRowAtIndexPath((indexPath)!) as! PostCell
         //let object = self.feedView.cellForRowAtIndexPath(hitIndex!)
         //this is where I incremented the key for the object
@@ -176,6 +190,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             isLiked = false
             
         }
+        print(post["likesCount"])
         post.saveInBackgroundWithBlock { (success: Bool, error: NSError?) in
             if success {
                 self.feedView.reloadData()
@@ -218,27 +233,29 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             cell.usernameLabel.text = username
         }
         
-        if let profpic = user["profilePic"] as? PFFile {
-            profpic.getDataInBackgroundWithBlock { (imageData: NSData?, error: NSError?) in
-                if imageData != nil {
-                    let image = UIImage(data: imageData!)
-                    cell.profPicView.image = image
-                }
-                else {
-                    print(error)
-                }
-            }
-        }
-        else {
-            cell.profPicView.image = UIImage()
-        }
+//        if let profpic = user["profilePic"] as? PFFile {
+//            profpic.getDataInBackgroundWithBlock { (imageData: NSData?, error: NSError?) in
+//                if imageData != nil {
+//                    let image = UIImage(data: imageData!)
+//                    cell.profPicView.image = image
+//                }
+//                else {
+//                    print(error)
+//                }
+//            }
+//        }
+//        else {
+//            cell.profPicView.image = UIImage()
+//        }
         
-        if let date = post["creationString"] as? String {
-            cell.timeLabel.text = date
-        }
-        else {
-            cell.timeLabel.text = ""
-        }
+//        if let date = post["creationString"] as? String {
+//            cell.timeLabel.text = date
+//        }
+//        else {
+//            cell.timeLabel.text = ""
+//        }
+        cell.usernameLabel.hidden = true
+        cell.captionLabel.hidden = true
         return cell
         }
     
@@ -253,11 +270,18 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         
-        //if sender?.identifier ==
-        let detailViewController = segue.destinationViewController as! PostDetailViewController
-        let indexPath = feedView.indexPathForCell(sender as! UITableViewCell)
-        let post = posts![indexPath!.row]
-        detailViewController.post = post
+        if segue.identifier != "addComment" {
+            let detailViewController = segue.destinationViewController as! PostDetailViewController
+            let indexPath = feedView.indexPathForCell(sender as! UITableViewCell)
+            let post = posts![indexPath!.section]
+            detailViewController.post = post
+            detailViewController.isLiked = isLiked
+        }
+//        else {
+//            let commentViewController = segue.destinationViewController as! CommentViewController
+//            
+//        }
+        
 
         
     }

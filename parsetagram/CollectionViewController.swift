@@ -11,6 +11,7 @@ import Parse
 
 class CollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
+    @IBOutlet weak var postsLabel: UILabel!
     @IBOutlet weak var profPicView: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
     var posts: [PFObject]?
@@ -77,7 +78,8 @@ class CollectionViewController: UIViewController, UICollectionViewDataSource, UI
             }
             else {
                 self.posts = pics
-                print(self.posts!.count)
+                let numPosts = self.posts!.count
+                self.postsLabel.text =  "\(numPosts) Posts"
             }
             self.collectionView.reloadData()
         }
