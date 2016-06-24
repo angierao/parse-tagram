@@ -14,7 +14,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     @IBOutlet weak var feedView: UITableView!
     
-    var posts: [PFObject]?
+    var posts: [PFObject]? = []
     var isMoreDataLoading = false
     var loadingMoreView:InfiniteScrollActivityView?
     var queryLimit: Int? = 20
@@ -44,11 +44,46 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         feedView.contentInset = insets
     }
     
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return posts?.count ?? 0
+    }
+    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 70.0
+    }
+    
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let vw = UIView()
-        vw.backgroundColor = UIColor.blackColor()
+        let headerCell = self.feedView.dequeueReusableCellWithIdentifier("HeaderCell") as! HeaderCell
+        let post = posts![section]
+        let user = post["author"] as! PFUser
+        headerCell.usernameLabel.text = user.username
+        if let time = post["creationString"] as? String {
+            headerCell.timeLabel.text = time
+        }
+        else {
+            headerCell.timeLabel.text = ""
+        }
         
-        return vw
+        if let profpic = user["profilePic"] as? PFFile {
+            profpic.getDataInBackgroundWithBlock { (imageData: NSData?, error: NSError?) in
+                if imageData != nil {
+                    let image = UIImage(data: imageData!)
+                    headerCell.profPicView.image = image
+                }
+                else {
+                    print(error)
+                }
+            }
+        }
+        else {
+            headerCell.profPicView.image = UIImage()
+        }
+        return headerCell
+        
     }
     
     func loadFeed(refresh: UIRefreshControl, firstLoad: Bool) {
@@ -149,15 +184,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 print(error)
             }
         }
-
-        
-        
     }
 
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = self.feedView.dequeueReusableCellWithIdentifier("PostCell", forIndexPath: indexPath) as! PostCell
-        let post = posts![indexPath.row]
+        let post = posts![indexPath.section]
         let imageFile = post["media"] as! PFFile
         imageFile.getDataInBackgroundWithBlock { (imageData: NSData?, error: NSError?) in
             if imageData != nil {
@@ -207,14 +239,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         else {
             cell.timeLabel.text = ""
         }
-        
-        
         return cell
         }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return posts?.count ?? 0
-    }
+//    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return posts?.count ?? 0
+//    }
 
     // MARK: - Navigation
 
