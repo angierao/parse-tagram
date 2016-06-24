@@ -73,6 +73,10 @@ class PostDetailViewController: UIViewController {
             if imageData != nil {
                 let image = UIImage(data: imageData!)
                 self.profPicView.image = image
+                self.profPicView.layer.cornerRadius = self.profPicView.frame.height/2
+                //headerCell.profPicView.layer.cornerRadius = 20
+                self.profPicView.clipsToBounds = true
+                self.profPicView.image = image
             }
             else {
                 print(error)
@@ -89,13 +93,13 @@ class PostDetailViewController: UIViewController {
         if isLiked! {
             let image = UIImage(named: "likedButton")
             likeButton.setImage(image, forState: UIControlState.Normal)
-            post!.incrementKey("likesCount")
+            //post!.incrementKey("likesCount")
             isLiked = false
         }
         else {
             let image = UIImage(named: "likeButton")
             likeButton.setImage(image, forState: UIControlState.Normal)
-            post!.incrementKey("likesCount", byAmount: -1)
+            //post!.incrementKey("likesCount", byAmount: -1)
             isLiked = false
         }
         
@@ -104,7 +108,7 @@ class PostDetailViewController: UIViewController {
     }
 
     @IBAction func onLike(sender: AnyObject) {
-        /*
+        print(post!["likesCount"])
         if !isLiked! {
             let image = UIImage(named: "likedButton")
             likeButton.setImage(image, forState: UIControlState.Normal)
@@ -118,6 +122,7 @@ class PostDetailViewController: UIViewController {
             isLiked = false
             
         }
+        print(post!["likesCount"])
         post!.saveInBackgroundWithBlock { (success: Bool, error: NSError?) in
             if success {
                 print("success")
@@ -126,7 +131,7 @@ class PostDetailViewController: UIViewController {
             else {
                 print(error)
             }
-        }*/
+        }
 
     }
     override func didReceiveMemoryWarning() {

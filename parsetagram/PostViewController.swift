@@ -95,9 +95,6 @@ class PostViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             imageView.image = newImage
         }
         
-        
-        
-        
         // Do something with the images (based on your use case)
         
         // Dismiss UIImagePickerController to go back to your original view controller
@@ -115,7 +112,8 @@ class PostViewController: UIViewController, UIImagePickerControllerDelegate, UIN
                 if error == nil {
                     print("success")
                     Post.getPFFileFromImage(self.imageView.image)
-                    self.performSegueWithIdentifier("uploadSuccess", sender: self)
+//                    self.performSegueWithIdentifier("uploadSuccess", sender: self)
+                    self.tabBarController?.selectedIndex = 0
                 }
                 else {
                     print(error)

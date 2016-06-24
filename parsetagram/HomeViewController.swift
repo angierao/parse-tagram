@@ -30,10 +30,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         // Do any additional setup after loading the view.
        
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(loadFeed(_:firstLoad:)), forControlEvents: UIControlEvents.ValueChanged)
-        self.loadFeed(refreshControl, firstLoad: true)
-        feedView.insertSubview(refreshControl, atIndex: 0)
+        
         
         let frame = CGRectMake(0, feedView.contentSize.height, feedView.bounds.size.width, InfiniteScrollActivityView.defaultHeight)
         loadingMoreView = InfiniteScrollActivityView(frame: frame)
@@ -43,6 +40,15 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         var insets = feedView.contentInset;
         insets.bottom += InfiniteScrollActivityView.defaultHeight;
         feedView.contentInset = insets
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(loadFeed(_:firstLoad:)), forControlEvents: UIControlEvents.ValueChanged)
+        self.loadFeed(refreshControl, firstLoad: true)
+        feedView.insertSubview(refreshControl, atIndex: 0)
     }
     
     @IBAction func onComment(sender: AnyObject) {
@@ -84,6 +90,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             profpic.getDataInBackgroundWithBlock { (imageData: NSData?, error: NSError?) in
                 if imageData != nil {
                     let image = UIImage(data: imageData!)
+                    
+                    headerCell.profPicView.layer.cornerRadius = headerCell.profPicView.frame.height/2
+                    //headerCell.profPicView.layer.cornerRadius = 20
+                    headerCell.profPicView.clipsToBounds = true
                     headerCell.profPicView.image = image
                 }
                 else {
@@ -94,6 +104,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         else {
             headerCell.profPicView.image = UIImage()
         }
+        headerCell.captionLabel.hidden = true
         return headerCell
         
     }
@@ -171,7 +182,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let hitPoint = sender.convertPoint(CGPointZero, toView: self.feedView)
         let indexPath = self.feedView.indexPathForRowAtPoint(hitPoint)
         let post = posts![(indexPath?.section)!]
-        print(post["likesCount"])
+        //print(post["likesCount"])
         let cell = self.feedView.cellForRowAtIndexPath((indexPath)!) as! PostCell
         //let object = self.feedView.cellForRowAtIndexPath(hitIndex!)
         //this is where I incremented the key for the object
@@ -190,7 +201,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             isLiked = false
             
         }
-        print(post["likesCount"])
+        //print(post["likesCount"])
         post.saveInBackgroundWithBlock { (success: Bool, error: NSError?) in
             if success {
                 self.feedView.reloadData()
@@ -255,7 +266,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 //            cell.timeLabel.text = ""
 //        }
         cell.usernameLabel.hidden = true
-        cell.captionLabel.hidden = true
         return cell
         }
     
@@ -281,9 +291,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 //            let commentViewController = segue.destinationViewController as! CommentViewController
 //            
 //        }
-        
-
-        
     }
     
     override func didReceiveMemoryWarning() {

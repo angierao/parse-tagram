@@ -53,7 +53,13 @@ class LoginViewController: UIViewController {
                 self.performSegueWithIdentifier("loginSegue", sender: nil)
             }
             if error?.code == 202 {
-                print("Username is taken.")
+                let alertController = UIAlertController(title: "Error", message: "Username is taken. Please enter a new username.", preferredStyle: .Alert)
+                let OKAction = UIAlertAction(title: "OK", style: .Default) { (action:UIAlertAction!) in
+                }
+                alertController.addAction(OKAction)
+                
+                self.presentViewController(alertController, animated: true, completion:nil)
+
             }
         }
         

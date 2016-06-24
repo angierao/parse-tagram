@@ -31,7 +31,12 @@ class CollectionViewController: UIViewController, UICollectionViewDataSource, UI
                 if imageData != nil {
                     print("got em")
                     let image = UIImage(data: imageData!)
+                    self.profPicView.layer.cornerRadius = self.profPicView.frame.height/2
+                    //headerCell.profPicView.layer.cornerRadius = 20
+                    self.profPicView.clipsToBounds = true
                     self.profPicView.image = image
+                    self.profPicView.image = image
+                    
                 }
                 else {
                     print(error)
