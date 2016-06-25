@@ -34,9 +34,12 @@ The following **optional** features are implemented:
 The following **additional** features are implemented:
 
 - [X] Sticky section headers
-- [X] Alert for username taken and for camera not being available
+   - [X] Sticky section headers with profile picture
+   - [X] Sticky section headers with username, caption, time stamp
+- [X] Alerts for username taken and for camera not being available
 - [X] Like button changes when liked
 - [X] Custom buttons (View all X comments)
+- [X] Round image view for profile pictures
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
@@ -47,9 +50,15 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/ivW44yL.mp4' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='http://i.imgur.com/YTu0TE3.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
-Here is the link: http://i.imgur.com/ivW44yL.mp4
+Here is the link: http://i.imgur.com/YTu0TE3.mp4
+
+And here's infinite scrolling:
+
+<img src='http://i.imgur.com/F3SkU8o.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+Here is the link: http://i.imgur.com/F3SkU8o.mp4
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
