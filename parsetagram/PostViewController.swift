@@ -11,7 +11,6 @@ import Parse
 import QuartzCore
 
 class PostViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate {
-
     @IBOutlet weak var cameraButton: UIButton!
     @IBOutlet weak var libraryButton: UIButton!
     @IBOutlet weak var imageView: UIImageView!
@@ -108,7 +107,7 @@ class PostViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             print("Image not uploaded")
         }
         else {
-            Post.postUserImage(imageView.image, withCaption: captionField.text, withCompletion: { (success: Bool, error: NSError?) in
+            let post = Post.postUserImage(imageView.image, withCaption: captionField.text, withCompletion: { (success: Bool, error: NSError?) in
                 if error == nil {
                     print("success")
                     Post.getPFFileFromImage(self.imageView.image)
@@ -119,6 +118,8 @@ class PostViewController: UIViewController, UIImagePickerControllerDelegate, UIN
                     print(error)
                 }
             })
+            //print(post.objectId)
+            
         }
     }
     

@@ -75,7 +75,7 @@ class CollectionViewController: UIViewController, UICollectionViewDataSource, UI
         query.limit = 20
         query.whereKey("author", equalTo: PFUser.currentUser()!)
         query.orderByDescending("createdAt")
-        query.includeKey("user")
+        query.includeKey("author")
         query.findObjectsInBackgroundWithBlock { (pics: [PFObject]?, error: NSError?) in
             if error != nil {
                 print(error)
@@ -84,7 +84,13 @@ class CollectionViewController: UIViewController, UICollectionViewDataSource, UI
             else {
                 self.posts = pics
                 let numPosts = self.posts!.count
-                self.postsLabel.text =  "\(numPosts) Posts"
+                if numPosts == 1 {
+                    self.postsLabel.text =  "1 Post"
+                }
+                else {
+                    self.postsLabel.text =  "\(numPosts) Posts"
+                }
+                
             }
             self.collectionView.reloadData()
         }
@@ -130,6 +136,7 @@ class CollectionViewController: UIViewController, UICollectionViewDataSource, UI
             let indexPath = collectionView.indexPathForCell(sender as! UICollectionViewCell)
             let post = posts![indexPath!.row]
             detailViewController.post = post
+            detailViewController.isLiked = false
         }
     }
     

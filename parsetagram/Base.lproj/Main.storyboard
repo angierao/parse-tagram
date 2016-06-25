@@ -355,7 +355,7 @@
                                     <color key="titleColor" red="0.22931320159999999" green="0.62063064700000004" blue="0.78642887439999998" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="IRk-ay-wgL" kind="push" id="yMZ-5F-eCa"/>
+                                    <segue destination="IRk-ay-wgL" kind="push" identifier="allComments" id="yMZ-5F-eCa"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="d0b-9g-pA1">
@@ -749,8 +749,8 @@
         <image name="person2" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="3x8-fY-49u"/>
         <segue reference="jto-cI-4FR"/>
         <segue reference="ywZ-Ay-ewh"/>
+        <segue reference="yMZ-5F-eCa"/>
     </inferredMetricsTieBreakers>
 </document>

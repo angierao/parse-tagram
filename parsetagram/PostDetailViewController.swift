@@ -26,8 +26,8 @@ class PostDetailViewController: UIViewController {
     @IBOutlet weak var likesLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+        print("PDVC")
+        print("\(post!["commentsCount"] as! Int)")
         if 0 == post!["commentsCount"] as! Int {
             allCommentsButton.hidden = true
         }
@@ -108,21 +108,30 @@ class PostDetailViewController: UIViewController {
     }
 
     @IBAction func onLike(sender: AnyObject) {
-        print(post!["likesCount"])
+        //print(post!["likesCount"])
         if !isLiked! {
             let image = UIImage(named: "likedButton")
             likeButton.setImage(image, forState: UIControlState.Normal)
+            let tempLikesCount = post!["likesCount"] as! Int
             post!.incrementKey("likesCount")
+            likesLabel.text = "\(tempLikesCount + 1) likes"
             isLiked = true
         }
         else {
             let image = UIImage(named: "likeButton")
             likeButton.setImage(image, forState: UIControlState.Normal)
+            let tempLikesCount = post!["likesCount"] as! Int
             post!.incrementKey("likesCount", byAmount: -1)
+            if tempLikesCount < 2 {
+                likesLabel.text = ""
+            }
+            else {
+                likesLabel.text = "\(tempLikesCount - 1) likes"
+            }
             isLiked = false
             
         }
-        print(post!["likesCount"])
+        //print(post!["likesCount"])
         post!.saveInBackgroundWithBlock { (success: Bool, error: NSError?) in
             if success {
                 print("success")
@@ -140,14 +149,19 @@ class PostDetailViewController: UIViewController {
     }
     
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        let commentViewController = segue.destinationViewController as! CommentViewController
+        commentViewController.post = post
+        
+        
     }
-    */
+    
 
 }

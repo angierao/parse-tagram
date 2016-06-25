@@ -287,10 +287,18 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             detailViewController.post = post
             detailViewController.isLiked = isLiked
         }
-//        else {
-//            let commentViewController = segue.destinationViewController as! CommentViewController
-//            
-//        }
+        else {
+            let commentViewController = segue.destinationViewController as! CommentViewController
+            
+            let button = sender as! UIButton
+            let view = button.superview!
+            let cell = view.superview as! PostCell
+            
+            let indexPath = feedView.indexPathForCell(cell)
+            let post = posts![indexPath!.section]
+            commentViewController.post = post
+            
+        }
     }
     
     override func didReceiveMemoryWarning() {
