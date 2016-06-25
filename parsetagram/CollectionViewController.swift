@@ -35,7 +35,7 @@ class CollectionViewController: UIViewController, UICollectionViewDataSource, UI
                     //headerCell.profPicView.layer.cornerRadius = 20
                     self.profPicView.clipsToBounds = true
                     self.profPicView.image = image
-                    self.profPicView.image = image
+                    //self.profPicView.image = image
                     
                 }
                 else {

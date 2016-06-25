@@ -131,6 +131,9 @@ class CommentViewController: UIViewController, UITableViewDelegate, UITableViewD
             profpic.getDataInBackgroundWithBlock { (imageData: NSData?, error: NSError?) in
                 if imageData != nil {
                     let image = UIImage(data: imageData!)
+                    cell.profPIcView.layer.cornerRadius = cell.profPIcView.frame.height/2
+                    //headerCell.profPicView.layer.cornerRadius = 20
+                    cell.profPIcView.clipsToBounds = true
                     cell.profPIcView.image = image
                 }
                 else {
